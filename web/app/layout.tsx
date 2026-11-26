@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Layout/Navbar";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import QueryProvider from "@/queries/Provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,8 +14,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full font-sans flex flex-col">
         <NuqsAdapter>
-          {children}
-          <Navbar />
+          <QueryProvider>
+            {children}
+            <Navbar />
+          </QueryProvider>
         </NuqsAdapter>
       </body>
     </html>
